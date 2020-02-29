@@ -41,8 +41,6 @@ services:
       - SMTP_PASSWORD
       - MAIL_FROM_ADDRESS
       - MAIL_DOMAIN
-    env_file:
-      - smtp.env
     depends_on:
       - db
       - redis
