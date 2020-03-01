@@ -61,6 +61,7 @@ services:
 
   proxy:
     image: jwilder/nginx-proxy:alpine
+    init: true  # Workaround for generate-dhparam becoming a zombie process (https://github.com/nginx-proxy/nginx-proxy/issues/1161)
     restart: always
     ports:
       - 80:80
