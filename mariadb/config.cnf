@@ -1,3 +1,0 @@
-[mysqld]
-# For low-memory (<=1G) machines
-performance_schema = off
