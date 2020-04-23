@@ -18,7 +18,7 @@ services:
     restart: always
 
   app:
-    image: nextcloud:18.0.4-apache
+    image: amd64/nextcloud:18.0.4-apache
     restart: always
     volumes:
       - nextcloud:/var/www/html
@@ -41,7 +41,8 @@ services:
       - SMTP_PASSWORD
       - MAIL_FROM_ADDRESS
       - MAIL_DOMAIN
-      - NC_overwriteprotocol=https
+      - APACHE_DISABLE_REWRITE_IP=1
+      - TRUSTED_PROXIES=proxy
     depends_on:
       - db
       - redis
@@ -50,7 +51,7 @@ services:
       - default
 
   cron:
-    image: nextcloud:18.0.4-apache
+    image: amd64/nextcloud:18.0.4-apache
     restart: always
     volumes:
       - nextcloud:/var/www/html
