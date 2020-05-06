@@ -41,8 +41,7 @@ services:
       - SMTP_PASSWORD
       - MAIL_FROM_ADDRESS
       - MAIL_DOMAIN
-      - APACHE_DISABLE_REWRITE_IP=1
-      - TRUSTED_PROXIES=proxy
+      - NC_overwriteprotocol=https
     depends_on:
       - db
       - redis
