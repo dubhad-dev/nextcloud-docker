@@ -2,7 +2,7 @@ services:
   db:
     image: mariadb:10.6.8
     restart: always
-    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --log-bin
     volumes:
       - db:/var/lib/mysql
     environment:
@@ -45,6 +45,9 @@ services:
       - SMTP_PASSWORD
       - MAIL_FROM_ADDRESS
       - MAIL_DOMAIN
+      - APACHE_DISABLE_REWRITE_IP=1
+      - TRUSTED_PROXIES=gethostbyname('nginx-proxy')
+      - NC_default_phone_region=US
       - VIRTUAL_HOST
       - VIRTUAL_PORT=80
       - LETSENCRYPT_HOST
