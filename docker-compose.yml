@@ -2,7 +2,7 @@ services:
   db:
     image: mariadb:10.6.8
     restart: always
-    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --log-bin
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --log-bin=mysqld-bin
     volumes:
       - db:/var/lib/mysql
     environment:
@@ -27,7 +27,7 @@ services:
       - nextcloud:/var/www/html
       - apps:/var/www/html/custom_apps
       - config:/var/www/html/config
-      - data:/var/www/html/data
+      - ${NEXTCLOUD_DATA_PATH}:/var/www/html/data
     environment:
       - MYSQL_HOST=db
       - MYSQL_DATABASE=nextcloud
@@ -45,8 +45,8 @@ services:
       - SMTP_PASSWORD
       - MAIL_FROM_ADDRESS
       - MAIL_DOMAIN
-      - APACHE_DISABLE_REWRITE_IP=1
-      - TRUSTED_PROXIES=gethostbyname('nginx-proxy')
+      - PHP_UPLOAD_LIMIT=10G
+      - OVERWRITEPROTOCOL=https
       - NC_default_phone_region=US
       - VIRTUAL_HOST
       - VIRTUAL_PORT=80
@@ -64,7 +64,6 @@ volumes:
   nextcloud:
   apps:
   config:
-  data:
 
 networks:
   proxy:
