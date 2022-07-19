@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/* \
   && mkdir /var/log/supervisord /var/run/supervisord
 
+RUN echo '*/5 * * * * php occ files:scan --all' >> /var/spool/cron/crontabs/www-data
+
 COPY supervisord.conf /
 
 ENV NEXTCLOUD_UPDATE=1
