@@ -14,7 +14,7 @@ services:
       - default
 
   redis:
-    image: redis:7.0.2
+    image: redis:7.0.4
     command: redis-server --requirepass "${REDIS_HOST_PASSWORD}"
     restart: always
     networks:
@@ -28,6 +28,7 @@ services:
       - apps:/var/www/html/custom_apps
       - config:/var/www/html/config
       - ${NEXTCLOUD_DATA_PATH}:/var/www/html/data
+      - ${SYNCTHING_EXTERNAL_PATH}:/external-syncthing:ro
     environment:
       - MYSQL_HOST=db
       - MYSQL_DATABASE=nextcloud
