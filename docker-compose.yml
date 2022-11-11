@@ -1,6 +1,6 @@
 services:
   db:
-    image: mariadb:10.6.10
+    image: mariadb:10.6.11
     restart: always
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --log-bin=mysqld-bin
     volumes:
