@@ -1,6 +1,6 @@
 services:
   db:
-    image: mariadb:10.6.14
+    image: mariadb:10.6.15
     restart: always
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --log-bin=mysqld-bin
     volumes:
@@ -15,7 +15,7 @@ services:
       - default
 
   redis:
-    image: redis:7.0.11
+    image: redis:7.2.0
     command: redis-server --requirepass "${REDIS_HOST_PASSWORD}"
     restart: always
     networks:
